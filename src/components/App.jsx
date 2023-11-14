@@ -58,7 +58,7 @@ export class App extends Component {
   }
 
   render() {
-    const { isLoading, error, gallery, page } = this.state;
+    const { isLoading, error, gallery } = this.state;
     const images = gallery.length !== 0;
 
     return (
@@ -82,10 +82,7 @@ export class App extends Component {
           <b>Oops! Something went wrong! Please try reloading this page! 🥹</b>
         )}  
         {images && <ImageGallery gallery={gallery}></ImageGallery>}
-        {images && (page
-          ? <Button onClick={this.loadMore} name="Load more"></Button>
-          : <p>We're sorry, but you've reached the end of search results.</p>)
-        } 
+        {this.loadMore && !isLoading  && images && <Button onClick={this.loadMore} name="Load more"/>} 
       </div>
     )
   }

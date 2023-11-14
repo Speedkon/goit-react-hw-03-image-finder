@@ -22,15 +22,15 @@ export class ImageGalleryItem extends Component {
     render() {
         const { isModalOpen } = this.state;
     
-        const { image: { image, largeImage, tags } } = this.props;
+        const {image, largeImage, tags } = this.props;
         
         return (
-            <div>
+            <>
                 <li className={css.imageGalleryItem} onClick={this.openModal}>
                     <img className={css.imageGalleryItemImage} src={image} alt={tags} />
                 </li>
                 <Modal isOpen={isModalOpen} onClose={this.closeModal} largeImage={largeImage} tags={tags} />
-            </div>
+            </>
         )
     }
 }

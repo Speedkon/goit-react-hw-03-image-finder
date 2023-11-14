@@ -8,6 +8,7 @@ export const Modal = ({largeImage, isOpen, onClose, tags}) => {
 
     <ReactModal
         className={css.Modal}
+        overlayClassName={css.overlay}
         isOpen={isOpen}
         onRequestClose={onClose}
         contentLabel="Large Image"

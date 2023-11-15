@@ -13,6 +13,7 @@ export class App extends Component {
     page: 1,
     isLoading: false,
     error: false,
+    totalPages: false,
   };
 
   async componentDidUpdate(prevProps, prevState) {
@@ -29,7 +30,7 @@ export class App extends Component {
           return {
             gallery: [...prevState.gallery, ...hits],
             isLoading: false,
-            totalPages: Math.ceil(totalHits / 12),
+            totalPages: page < Math.ceil(totalHits / 12),
           }
         });
       } catch (error) {
@@ -41,8 +42,8 @@ export class App extends Component {
   }
 
   handleSubmit = value => {
-
-    return this.setState({
+    if(!value.query.trim()) return alert("Can not be emrty")
+    this.setState({
       query: value.query,
       page: 1,
       gallery: [],
@@ -58,7 +59,7 @@ export class App extends Component {
   }
 
   render() {
-    const { isLoading, error, gallery } = this.state;
+    const { isLoading, error, gallery, totalPages } = this.state;
     const images = gallery.length !== 0;
 
     return (
@@ -82,7 +83,7 @@ export class App extends Component {
           <b>Oops! Something went wrong! Please try reloading this page! 🥹</b>
         )}  
         {images && <ImageGallery gallery={gallery}></ImageGallery>}
-        {this.loadMore && !isLoading  && images && <Button onClick={this.loadMore} name="Load more"/>} 
+        {totalPages && !isLoading  && images && <Button onClick={this.loadMore} name="Load more"/>} 
       </div>
     )
   }

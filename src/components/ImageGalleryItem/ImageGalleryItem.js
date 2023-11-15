@@ -26,8 +26,8 @@ export class ImageGalleryItem extends Component {
         
         return (
             <>
-                <li className={css.imageGalleryItem} onClick={this.openModal}>
-                    <img className={css.imageGalleryItemImage} src={image} alt={tags} />
+                <li className={css.ImageGalleryItem} onClick={this.openModal}>
+                    <img className={css.ImageGalleryItemImage} src={image} alt={tags} />
                 </li>
                 <Modal isOpen={isModalOpen} onClose={this.closeModal} largeImage={largeImage} tags={tags} />
             </>
